@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>线性代数（Ⅷ）：Ax=b可解性及解的结构 | Tr · 个人站</title><meta name="author" content="Tr"><meta name="copyright" content="Tr"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="对于满秩情形下利用逆矩阵求解前情提要1.矩阵有一个概念叫逆矩阵。(这个概念没学没关系，不是很影响)2.”非奇异矩阵”(行列式不为零，也叫满秩矩阵)可以由单位矩阵E经过初等变换得到(变换方式不唯一)扩展:矩阵可以由其标准形经过初等变换得到 3.初等变换都可以对应写成左(右)乘一个初等矩阵，反过来说也是一样的开始:AX&#x3D;B(A当满秩矩阵处理)A可以写成一系列的初等矩阵(P或Q)P1P2P3…E…Q1Q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数（Ⅷ）：Ax&#x3D;b可解性及解的结构">
+<meta property="og:url" content="http://example.com/2023/03/21/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A7%EF%BC%89%EF%BC%9AAx-b%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%8F%8A%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Tr · 个人站">
+<meta property="og:description" content="对于满秩情形下利用逆矩阵求解前情提要1.矩阵有一个概念叫逆矩阵。(这个概念没学没关系，不是很影响)2.”非奇异矩阵”(行列式不为零，也叫满秩矩阵)可以由单位矩阵E经过初等变换得到(变换方式不唯一)扩展:矩阵可以由其标准形经过初等变换得到 3.初等变换都可以对应写成左(右)乘一个初等矩阵，反过来说也是一样的开始:AX&#x3D;B(A当满秩矩阵处理)A可以写成一系列的初等矩阵(P或Q)P1P2P3…E…Q1Q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0">
+<meta property="article:published_time" content="2023-03-21T01:59:10.000Z">
+<meta property="article:modified_time" content="2023-03-21T02:05:54.216Z">
+<meta property="article:author" content="Tr">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0"><link rel="shortcut icon" href="https://i.postimg.cc/Gtg8TY6X/dragon.jpg"><link rel="canonical" href="http://example.com/2023/03/21/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A7%EF%BC%89%EF%BC%9AAx-b%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%8F%8A%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Tr","link":"链接: ","source":"来源: Tr · 个人站","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '线性代数（Ⅷ）：Ax=b可解性及解的结构',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-21 10:05:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/plane.css"><link rel="stylesheet" href="/css/Aa.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.postimg.cc/0jj1jJY5/bear.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&amp;riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&amp;ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0')"><nav id="nav"><span id="blog-info"><a href="/" title="Tr · 个人站"><img class="site-icon" src="https://i.postimg.cc/Gtg8TY6X/dragon.jpg"/><span class="site-name">Tr · 个人站</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">线性代数（Ⅷ）：Ax=b可解性及解的结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-21T01:59:10.000Z" title="发表于 2023-03-21 09:59:10">2023-03-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-21T02:05:54.216Z" title="更新于 2023-03-21 10:05:54">2023-03-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="线性代数（Ⅷ）：Ax=b可解性及解的结构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="对于满秩情形下利用逆矩阵求解"><a href="#对于满秩情形下利用逆矩阵求解" class="headerlink" title="对于满秩情形下利用逆矩阵求解"></a>对于满秩情形下利用逆矩阵求解</h1><h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><h3 id="1-矩阵有一个概念叫逆矩阵。-这个概念没学没关系，不是很影响"><a href="#1-矩阵有一个概念叫逆矩阵。-这个概念没学没关系，不是很影响" class="headerlink" title="1.矩阵有一个概念叫逆矩阵。(这个概念没学没关系，不是很影响)"></a>1.矩阵有一个概念叫逆矩阵。(这个概念没学没关系，不是很影响)</h3><h3 id="2-”非奇异矩阵”-行列式不为零，也叫满秩矩阵-可以由单位矩阵E经过初等变换得到-变换方式不唯一"><a href="#2-”非奇异矩阵”-行列式不为零，也叫满秩矩阵-可以由单位矩阵E经过初等变换得到-变换方式不唯一" class="headerlink" title="2.”非奇异矩阵”(行列式不为零，也叫满秩矩阵)可以由单位矩阵E经过初等变换得到(变换方式不唯一)"></a>2.”非奇异矩阵”(行列式不为零，也叫满秩矩阵)可以由单位矩阵E经过初等变换得到(变换方式不唯一)</h3><p>扩展:矩阵可以由其标准形经过初等变换得到</p>
+<h3 id="3-初等变换都可以对应写成左-右-乘一个初等矩阵，反过来说也是一样的"><a href="#3-初等变换都可以对应写成左-右-乘一个初等矩阵，反过来说也是一样的" class="headerlink" title="3.初等变换都可以对应写成左(右)乘一个初等矩阵，反过来说也是一样的"></a>3.初等变换都可以对应写成左(右)乘一个初等矩阵，反过来说也是一样的</h3><h2 id="开始"><a href="#开始" class="headerlink" title="开始:"></a>开始:</h2><p>AX=B(A当满秩矩阵处理)A可以写成一系列的初等矩阵(P或Q)P1P2P3…E…Q1Q2…，E当然可以不写，所以P、Q没有本质区别，实际上A可以写成P1P2P3…E(由E完全由行变换得到)。    </p>
+<p>所以P1P2P3…Q1Q2…X=B。将初等矩阵对应回初等变换(但是有的列变换变成了行变换)，即X依次经过…、Q2、Q1…、P3、P2、P1、…的变换变成了B。    </p>
+<p>所以把B经过相应的逆过程就可以变成X，即求出X。    </p>
+<p>但是这个”逆过程”怎么求呢？<br>从它的特点来说:A经过这个逆过程会变成E(理解不能的话，可以把A当成P1P2P3…E理解，简单一点)。<br>所以把A,B写在一起，对它俩做同样的处理，直到A变成了E，那么B就变成了X。    </p>
+<h2 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h2><p><img src="https://tidio-files.s3.amazonaws.com/j67ykm4gmn7lkovxmmghys8dzjkeypqp/conversation/b4dd6ed9e5ca4a44b8f0307d4c1727bd/2fc215d8-be09-48af-be4a-364c2de556f0.jpg"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Tr</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/21/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A7%EF%BC%89%EF%BC%9AAx-b%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%8F%8A%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/">http://example.com/2023/03/21/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A7%EF%BC%89%EF%BC%9AAx-b%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%8F%8A%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Tr · 个人站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a><a class="post-meta__tags" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a></div><div class="post_share"><div class="social-share" data-image="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&amp;riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&amp;ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/03/21/%E8%8B%B1%E6%96%87%E6%99%A8%E8%AF%BBD10-%E8%BF%99%E5%B1%8A%E5%B9%B4%E8%BD%BB%E4%BA%BA%E6%89%BE%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%9C%80%E7%9C%8B%E9%87%8D%E7%9A%84%E7%AB%9F%E6%98%AF%E8%BF%99%E4%B8%80%E7%82%B9%EF%BC%9F/" title="英文晨读D10-这届年轻人找对象，最看重的竟是这一点？"><img class="cover" src="https://tidio-files.s3.amazonaws.com/j67ykm4gmn7lkovxmmghys8dzjkeypqp/conversation/b4dd6ed9e5ca4a44b8f0307d4c1727bd/71693a8b-5b70-41c7-998f-675e393c24fe.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">英文晨读D10-这届年轻人找对象，最看重的竟是这一点？</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/03/08/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0(%E2%85%A0)%EF%BC%9A%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" title="线性代数(Ⅰ)：矩阵乘法的四种方法"><img class="cover" src="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-08</div><div class="title">线性代数(Ⅰ)：矩阵乘法的四种方法</div></div></a></div><div><a href="/2023/03/08/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A2%EF%BC%89%EF%BC%9A%E6%B1%82%E9%80%86%E7%9F%A9%E9%98%B5%E7%9A%84%E6%96%B9%E6%B3%95/" title="线性代数（Ⅲ）：求逆矩阵的方法（待更新）"><img class="cover" src="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-08</div><div class="title">线性代数（Ⅲ）：求逆矩阵的方法（待更新）</div></div></a></div><div><a href="/2023/03/08/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0(%E2%85%A1)%EF%BC%9A%E5%88%9D%E7%AD%89%E5%8F%98%E6%8D%A2%E7%9A%84%E6%8A%80%E5%B7%A7/" title="线性代数（Ⅱ）：初等变换的技巧"><img class="cover" src="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-08</div><div class="title">线性代数（Ⅱ）：初等变换的技巧</div></div></a></div><div><a href="/2023/03/08/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A3%EF%BC%89%EF%BC%9AA%E7%9A%84LU%E5%88%86%E8%A7%A3/" title="线性代数（Ⅳ）：A的LU分解（待更新）"><img class="cover" src="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-08</div><div class="title">线性代数（Ⅳ）：A的LU分解（待更新）</div></div></a></div><div><a href="/2023/03/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A4%EF%BC%89%EF%BC%9AAx=0%E4%B8%BB%E5%8F%98%E9%87%8F-%E7%89%B9%E8%A7%A3/" title="线性代数（Ⅴ）：Ax&#x3D;0主变量-特解"><img class="cover" src="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-09</div><div class="title">线性代数（Ⅴ）：Ax&#x3D;0主变量-特解</div></div></a></div><div><a href="/2023/03/10/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A5%EF%BC%89%EF%BC%9A%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7%E3%80%81%E5%9F%BA%E3%80%81%E7%BB%B4%E6%95%B0/" title="线性代数（Ⅵ）：线性相关性、基、维数"><img class="cover" src="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-10</div><div class="title">线性代数（Ⅵ）：线性相关性、基、维数</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.postimg.cc/0jj1jJY5/bear.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tr</div><div class="author-info__description">记录生活的美好瞬间！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">诗与远方</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%BB%A1%E7%A7%A9%E6%83%85%E5%BD%A2%E4%B8%8B%E5%88%A9%E7%94%A8%E9%80%86%E7%9F%A9%E9%98%B5%E6%B1%82%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">对于满秩情形下利用逆矩阵求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text">前情提要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%9F%A9%E9%98%B5%E6%9C%89%E4%B8%80%E4%B8%AA%E6%A6%82%E5%BF%B5%E5%8F%AB%E9%80%86%E7%9F%A9%E9%98%B5%E3%80%82-%E8%BF%99%E4%B8%AA%E6%A6%82%E5%BF%B5%E6%B2%A1%E5%AD%A6%E6%B2%A1%E5%85%B3%E7%B3%BB%EF%BC%8C%E4%B8%8D%E6%98%AF%E5%BE%88%E5%BD%B1%E5%93%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.矩阵有一个概念叫逆矩阵。(这个概念没学没关系，不是很影响)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E2%80%9D%E9%9D%9E%E5%A5%87%E5%BC%82%E7%9F%A9%E9%98%B5%E2%80%9D-%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B8%8D%E4%B8%BA%E9%9B%B6%EF%BC%8C%E4%B9%9F%E5%8F%AB%E6%BB%A1%E7%A7%A9%E7%9F%A9%E9%98%B5-%E5%8F%AF%E4%BB%A5%E7%94%B1%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5E%E7%BB%8F%E8%BF%87%E5%88%9D%E7%AD%89%E5%8F%98%E6%8D%A2%E5%BE%97%E5%88%B0-%E5%8F%98%E6%8D%A2%E6%96%B9%E5%BC%8F%E4%B8%8D%E5%94%AF%E4%B8%80"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.”非奇异矩阵”(行列式不为零，也叫满秩矩阵)可以由单位矩阵E经过初等变换得到(变换方式不唯一)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9D%E7%AD%89%E5%8F%98%E6%8D%A2%E9%83%BD%E5%8F%AF%E4%BB%A5%E5%AF%B9%E5%BA%94%E5%86%99%E6%88%90%E5%B7%A6-%E5%8F%B3-%E4%B9%98%E4%B8%80%E4%B8%AA%E5%88%9D%E7%AD%89%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%8F%8D%E8%BF%87%E6%9D%A5%E8%AF%B4%E4%B9%9F%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.初等变换都可以对应写成左(右)乘一个初等矩阵，反过来说也是一样的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-number">1.2.</span> <span class="toc-text">开始:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">例题：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/21/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A7%EF%BC%89%EF%BC%9AAx-b%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%8F%8A%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/" title="线性代数（Ⅷ）：Ax=b可解性及解的结构"><img src="https://ts1.cn.mm.bing.net/th/id/R-C.dfe1d40af41b9f5707463c4e8281a730?rik=XgM%2fBmGzBOvYUQ&amp;riu=http%3a%2f%2fcdn2018.ehuixue.cn%2fimages%2fehx_202005142215126754.jpg&amp;ehk=R0CUzXWZJuYdG%2buE1nx3Vpu2g31%2bK%2b8pZ8eJ37%2btzJI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="线性代数（Ⅷ）：Ax=b可解性及解的结构"/></a><div class="content"><a class="title" href="/2023/03/21/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%EF%BC%88%E2%85%A7%EF%BC%89%EF%BC%9AAx-b%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%8F%8A%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/" title="线性代数（Ⅷ）：Ax=b可解性及解的结构">线性代数（Ⅷ）：Ax=b可解性及解的结构</a><time datetime="2023-03-21T01:59:10.000Z" title="发表于 2023-03-21 09:59:10">2023-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/21/%E8%8B%B1%E6%96%87%E6%99%A8%E8%AF%BBD10-%E8%BF%99%E5%B1%8A%E5%B9%B4%E8%BD%BB%E4%BA%BA%E6%89%BE%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%9C%80%E7%9C%8B%E9%87%8D%E7%9A%84%E7%AB%9F%E6%98%AF%E8%BF%99%E4%B8%80%E7%82%B9%EF%BC%9F/" title="英文晨读D10-这届年轻人找对象，最看重的竟是这一点？"><img src="https://tidio-files.s3.amazonaws.com/j67ykm4gmn7lkovxmmghys8dzjkeypqp/conversation/b4dd6ed9e5ca4a44b8f0307d4c1727bd/71693a8b-5b70-41c7-998f-675e393c24fe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="英文晨读D10-这届年轻人找对象，最看重的竟是这一点？"/></a><div class="content"><a class="title" href="/2023/03/21/%E8%8B%B1%E6%96%87%E6%99%A8%E8%AF%BBD10-%E8%BF%99%E5%B1%8A%E5%B9%B4%E8%BD%BB%E4%BA%BA%E6%89%BE%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%9C%80%E7%9C%8B%E9%87%8D%E7%9A%84%E7%AB%9F%E6%98%AF%E8%BF%99%E4%B8%80%E7%82%B9%EF%BC%9F/" title="英文晨读D10-这届年轻人找对象，最看重的竟是这一点？">英文晨读D10-这届年轻人找对象，最看重的竟是这一点？</a><time datetime="2023-03-21T01:48:08.000Z" title="发表于 2023-03-21 09:48:08">2023-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/17/%E8%8B%B1%E6%96%87%E6%99%A8%E8%AF%BBD9-%E5%8F%98%E7%A9%B7%E9%85%B8%E7%9A%84%E4%B8%AD%E4%BA%A7%EF%BC%9A%E8%B4%A2%E5%AF%8C%E8%87%AA%E7%94%B1%E6%A2%A6%E7%BB%88%E7%A9%B6%E7%A0%B4%E7%81%AD%EF%BC%9F/" title="英文晨读D9-变穷酸的中产：财富自由梦终究破灭？"><img src="https://tidio-files.s3.amazonaws.com/j67ykm4gmn7lkovxmmghys8dzjkeypqp/conversation/b4dd6ed9e5ca4a44b8f0307d4c1727bd/92b7bbcd-d1c5-4927-a057-a4ecfb05541e.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="英文晨读D9-变穷酸的中产：财富自由梦终究破灭？"/></a><div class="content"><a class="title" href="/2023/03/17/%E8%8B%B1%E6%96%87%E6%99%A8%E8%AF%BBD9-%E5%8F%98%E7%A9%B7%E9%85%B8%E7%9A%84%E4%B8%AD%E4%BA%A7%EF%BC%9A%E8%B4%A2%E5%AF%8C%E8%87%AA%E7%94%B1%E6%A2%A6%E7%BB%88%E7%A9%B6%E7%A0%B4%E7%81%AD%EF%BC%9F/" title="英文晨读D9-变穷酸的中产：财富自由梦终究破灭？">英文晨读D9-变穷酸的中产：财富自由梦终究破灭？</a><time datetime="2023-03-17T11:03:36.000Z" title="发表于 2023-03-17 19:03:36">2023-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/16/%E8%8B%B1%E6%96%87%E6%99%A8%E8%AF%BBD8-%E4%BD%A0%E7%9A%84%E7%88%B1%E6%84%8F%E5%AF%B9%E6%96%B9%E6%84%9F%E5%8F%97%E4%B8%8D%E5%88%B0%EF%BC%9F%E5%85%88%E5%AD%A6%E4%BC%9ATA%E7%9A%84%E8%AF%AD%E8%A8%80/" title="英文晨读D8-你的爱意对方感受不到？先学会TA的语言"><img src="https://tidio-files.s3.amazonaws.com/j67ykm4gmn7lkovxmmghys8dzjkeypqp/conversation/b4dd6ed9e5ca4a44b8f0307d4c1727bd/beeb3ef2-67cd-4dca-b99d-827415bb95d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="英文晨读D8-你的爱意对方感受不到？先学会TA的语言"/></a><div class="content"><a class="title" href="/2023/03/16/%E8%8B%B1%E6%96%87%E6%99%A8%E8%AF%BBD8-%E4%BD%A0%E7%9A%84%E7%88%B1%E6%84%8F%E5%AF%B9%E6%96%B9%E6%84%9F%E5%8F%97%E4%B8%8D%E5%88%B0%EF%BC%9F%E5%85%88%E5%AD%A6%E4%BC%9ATA%E7%9A%84%E8%AF%AD%E8%A8%80/" title="英文晨读D8-你的爱意对方感受不到？先学会TA的语言">英文晨读D8-你的爱意对方感受不到？先学会TA的语言</a><time datetime="2023-03-15T23:58:41.000Z" title="发表于 2023-03-16 07:58:41">2023-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/15/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%85%A1%EF%BC%9A%E5%8A%9B%E7%9F%A9/" title="大学物理Ⅱ：刚体"><img src="https://ts1.cn.mm.bing.net/th/id/R-C.4337cdc7becad6b39bde842aa3b445ed?rik=WSL3WTURUr0yLw&amp;riu=http%3a%2f%2fpic.52112.com%2f180901%2fEPS-180901_152%2fdjxYDYcR3m_small.jpg&amp;ehk=IrWvV39QGo3dXkqnxyZV80iphl77rQSJBNwSrsI2mio%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大学物理Ⅱ：刚体"/></a><div class="content"><a class="title" href="/2023/03/15/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%85%A1%EF%BC%9A%E5%8A%9B%E7%9F%A9/" title="大学物理Ⅱ：刚体">大学物理Ⅱ：刚体</a><time datetime="2023-03-15T12:27:06.000Z" title="发表于 2023-03-15 20:27:06">2023-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By Tr</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="//code.tidio.co/j67ykm4gmn7lkovxmmghys8dzjkeypqp.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
